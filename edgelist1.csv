@@ -1,0 +1,14 @@
+source,target,trains
+Florida,Hawaii,5478
+Hawaii,Texas,3456
+California,Alaska,4521
+Alaska,Texas,4356
+Maryland,Indiana,7680
+Indiana,Missouri,543
+Missouri,Texas,456
+California,New York,378
+New York,Florida,6538
+New York,Ohio,7809
+Ohio,Texas,3457
+Ohio,Alaska,5428
+Florida,Indiana,548

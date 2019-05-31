@@ -1,0 +1,682 @@
+[
+  {
+    "Pos": 1,
+    "Name": "United States",
+    "Value": 224792
+  },
+  {
+    "Pos": 2,
+    "Name": "Russia",
+    "Value": 87157
+  },
+  {
+    "Pos": 3,
+    "Name": "China",
+    "Value": 86000
+  },
+  {
+    "Pos": 4,
+    "Name": "India",
+    "Value": 64600
+  },
+  {
+    "Pos": 5,
+    "Name": "Canada",
+    "Value": 46552
+  },
+  {
+    "Pos": 6,
+    "Name": "Germany",
+    "Value": 41981
+  },
+  {
+    "Pos": 7,
+    "Name": "Australia",
+    "Value": 38445
+  },
+  {
+    "Pos": 8,
+    "Name": "Argentina",
+    "Value": 36966
+  },
+  {
+    "Pos": 9,
+    "Name": "France",
+    "Value": 29640
+  },
+  {
+    "Pos": 10,
+    "Name": "Brazil",
+    "Value": 28538
+  },
+  {
+    "Pos": 11,
+    "Name": "Japan",
+    "Value": 27182
+  },
+  {
+    "Pos": 12,
+    "Name": "Ukraine",
+    "Value": 21619
+  },
+  {
+    "Pos": 13,
+    "Name": "Italy",
+    "Value": 20255
+  },
+  {
+    "Pos": 14,
+    "Name": "South Africa",
+    "Value": 20192
+  },
+  {
+    "Pos": 15,
+    "Name": "Poland",
+    "Value": 19428
+  },
+  {
+    "Pos": 16,
+    "Name": "Mexico",
+    "Value": 17166
+  },
+  {
+    "Pos": 17,
+    "Name": "United Kingdom",
+    "Value": 16454
+  },
+  {
+    "Pos": 18,
+    "Name": "Kazakhstan",
+    "Value": 15333
+  },
+  {
+    "Pos": 19,
+    "Name": "Spain",
+    "Value": 15293
+  },
+  {
+    "Pos": 20,
+    "Name": "Turkey",
+    "Value": 12008
+  },
+  {
+    "Pos": 21,
+    "Name": "Sweden",
+    "Value": 11633
+  },
+  {
+    "Pos": 22,
+    "Name": "Romania",
+    "Value": 10777
+  },
+  {
+    "Pos": 23,
+    "Name": "Czech Republic",
+    "Value": 9469
+  },
+  {
+    "Pos": 24,
+    "Name": "Iran",
+    "Value": 8442
+  },
+  {
+    "Pos": 25,
+    "Name": "Cuba",
+    "Value": 8203
+  },
+  {
+    "Pos": 26,
+    "Name": "Hungary",
+    "Value": 8057
+  },
+  {
+    "Pos": 27,
+    "Name": "Pakistan",
+    "Value": 7791
+  },
+  {
+    "Pos": 28,
+    "Name": "Chile",
+    "Value": 7082
+  },
+  {
+    "Pos": 29,
+    "Name": "Austria",
+    "Value": 6399
+  },
+  {
+    "Pos": 30,
+    "Name": "Sudan",
+    "Value": 5978
+  },
+  {
+    "Pos": 31,
+    "Name": "Finland",
+    "Value": 5944
+  },
+  {
+    "Pos": 32,
+    "Name": "Belarus",
+    "Value": 5537
+  },
+  {
+    "Pos": 33,
+    "Name": "Korea, North",
+    "Value": 5242
+  },
+  {
+    "Pos": 34,
+    "Name": "Egypt",
+    "Value": 5083
+  },
+  {
+    "Pos": 35,
+    "Name": "Indonesia",
+    "Value": 5042
+  },
+  {
+    "Pos": 36,
+    "Name": "Burma",
+    "Value": 5031
+  },
+  {
+    "Pos": 37,
+    "Name": "Switzerland",
+    "Value": 4876
+  },
+  {
+    "Pos": 38,
+    "Name": "Mozambique",
+    "Value": 4787
+  },
+  {
+    "Pos": 39,
+    "Name": "Norway",
+    "Value": 4237
+  },
+  {
+    "Pos": 40,
+    "Name": "Uzbekistan",
+    "Value": 4230
+  },
+  {
+    "Pos": 41,
+    "Name": "Bulgaria",
+    "Value": 4152
+  },
+  {
+    "Pos": 42,
+    "Name": "New Zealand",
+    "Value": 4128
+  },
+  {
+    "Pos": 43,
+    "Name": "Thailand",
+    "Value": 4071
+  },
+  {
+    "Pos": 44,
+    "Name": "Congo, Democratic Republic of the",
+    "Value": 4007
+  },
+  {
+    "Pos": 45,
+    "Name": "Algeria",
+    "Value": 3973
+  },
+  {
+    "Pos": 46,
+    "Name": "Serbia",
+    "Value": 3809
+  },
+  {
+    "Pos": 47,
+    "Name": "Tanzania",
+    "Value": 3689
+  },
+  {
+    "Pos": 48,
+    "Name": "Bolivia",
+    "Value": 3652
+  },
+  {
+    "Pos": 49,
+    "Name": "Slovakia",
+    "Value": 3622
+  },
+  {
+    "Pos": 50,
+    "Name": "Nigeria",
+    "Value": 3505
+  },
+  {
+    "Pos": 51,
+    "Name": "Zimbabwe",
+    "Value": 3427
+  },
+  {
+    "Pos": 52,
+    "Name": "Korea, South",
+    "Value": 3381
+  },
+  {
+    "Pos": 53,
+    "Name": "Portugal",
+    "Value": 3319
+  },
+  {
+    "Pos": 54,
+    "Name": "Ireland",
+    "Value": 3237
+  },
+  {
+    "Pos": 55,
+    "Name": "Belgium",
+    "Value": 3233
+  },
+  {
+    "Pos": 56,
+    "Name": "Netherlands",
+    "Value": 3013
+  },
+  {
+    "Pos": 57,
+    "Name": "Turkmenistan",
+    "Value": 2980
+  },
+  {
+    "Pos": 58,
+    "Name": "Zambia",
+    "Value": 2922
+  },
+  {
+    "Pos": 59,
+    "Name": "Azerbaijan",
+    "Value": 2918
+  },
+  {
+    "Pos": 60,
+    "Name": "Bangladesh",
+    "Value": 2835
+  },
+  {
+    "Pos": 61,
+    "Name": "Angola",
+    "Value": 2764
+  },
+  {
+    "Pos": 62,
+    "Name": "Croatia",
+    "Value": 2722
+  },
+  {
+    "Pos": 63,
+    "Name": "Denmark",
+    "Value": 2667
+  },
+  {
+    "Pos": 64,
+    "Name": "Vietnam",
+    "Value": 2632
+  },
+  {
+    "Pos": 65,
+    "Name": "Namibia",
+    "Value": 2626
+  },
+  {
+    "Pos": 66,
+    "Name": "Greece",
+    "Value": 2548
+  },
+  {
+    "Pos": 67,
+    "Name": "Iraq",
+    "Value": 2370
+  },
+  {
+    "Pos": 68,
+    "Name": "Latvia",
+    "Value": 2239
+  },
+  {
+    "Pos": 69,
+    "Name": "Tunisia",
+    "Value": 2165
+  },
+  {
+    "Pos": 70,
+    "Name": "Morocco",
+    "Value": 2067
+  },
+  {
+    "Pos": 71,
+    "Name": "Kenya",
+    "Value": 2066
+  },
+  {
+    "Pos": 72,
+    "Name": "Syria",
+    "Value": 2052
+  },
+  {
+    "Pos": 73,
+    "Name": "Mongolia",
+    "Value": 1908
+  },
+  {
+    "Pos": 74,
+    "Name": "Peru",
+    "Value": 1907
+  },
+  {
+    "Pos": 75,
+    "Name": "Malaysia",
+    "Value": 1849
+  },
+  {
+    "Pos": 76,
+    "Name": "Lithuania",
+    "Value": 1767
+  },
+  {
+    "Pos": 77,
+    "Name": "Uruguay",
+    "Value": 1641
+  },
+  {
+    "Pos": 78,
+    "Name": "Georgia",
+    "Value": 1612
+  },
+  {
+    "Pos": 79,
+    "Name": "Taiwan",
+    "Value": 1580
+  },
+  {
+    "Pos": 80,
+    "Name": "Sri Lanka",
+    "Value": 1449
+  },
+  {
+    "Pos": 81,
+    "Name": "Saudi Arabia",
+    "Value": 1378
+  },
+  {
+    "Pos": 82,
+    "Name": "Cameroon",
+    "Value": 1245
+  },
+  {
+    "Pos": 83,
+    "Name": "Uganda",
+    "Value": 1244
+  },
+  {
+    "Pos": 84,
+    "Name": "Slovenia",
+    "Value": 1228
+  },
+  {
+    "Pos": 85,
+    "Name": "Estonia",
+    "Value": 1196
+  },
+  {
+    "Pos": 86,
+    "Name": "Moldova",
+    "Value": 1190
+  },
+  {
+    "Pos": 87,
+    "Name": "Guinea",
+    "Value": 1185
+  },
+  {
+    "Pos": 88,
+    "Name": "Philippines",
+    "Value": 995
+  },
+  {
+    "Pos": 89,
+    "Name": "Israel",
+    "Value": 975
+  },
+  {
+    "Pos": 90,
+    "Name": "Ecuador",
+    "Value": 965
+  },
+  {
+    "Pos": 91,
+    "Name": "Ghana",
+    "Value": 947
+  },
+  {
+    "Pos": 92,
+    "Name": "Senegal",
+    "Value": 906
+  },
+  {
+    "Pos": 93,
+    "Name": "Botswana",
+    "Value": 888
+  },
+  {
+    "Pos": 94,
+    "Name": "Congo, Republic of the",
+    "Value": 886
+  },
+  {
+    "Pos": 95,
+    "Name": "Colombia",
+    "Value": 874
+  },
+  {
+    "Pos": 96,
+    "Name": "Armenia",
+    "Value": 869
+  },
+  {
+    "Pos": 97,
+    "Name": "Madagascar",
+    "Value": 854
+  },
+  {
+    "Pos": 98,
+    "Name": "Venezuela",
+    "Value": 806
+  },
+  {
+    "Pos": 99,
+    "Name": "Malawi",
+    "Value": 797
+  },
+  {
+    "Pos": 100,
+    "Name": "Mauritania",
+    "Value": 728
+  },
+  {
+    "Pos": 101,
+    "Name": "Macedonia",
+    "Value": 699
+  },
+  {
+    "Pos": 102,
+    "Name": "Cambodia",
+    "Value": 690
+  },
+  {
+    "Pos": 103,
+    "Name": "Ethiopia",
+    "Value": 681
+  },
+  {
+    "Pos": 104,
+    "Name": "Tajikistan",
+    "Value": 680
+  },
+  {
+    "Pos": 105,
+    "Name": "Cote d'Ivoire",
+    "Value": 660
+  },
+  {
+    "Pos": 106,
+    "Name": "Gabon",
+    "Value": 649
+  },
+  {
+    "Pos": 107,
+    "Name": "Burkina Faso",
+    "Value": 622
+  },
+  {
+    "Pos": 108,
+    "Name": "Bosnia and Herzegovina",
+    "Value": 601
+  },
+  {
+    "Pos": 109,
+    "Name": "Fiji",
+    "Value": 597
+  },
+  {
+    "Pos": 110,
+    "Name": "Mali",
+    "Value": 593
+  },
+  {
+    "Pos": 111,
+    "Name": "Togo",
+    "Value": 568
+  },
+  {
+    "Pos": 112,
+    "Name": "Jordan",
+    "Value": 507
+  },
+  {
+    "Pos": 113,
+    "Name": "Kyrgyzstan",
+    "Value": 470
+  },
+  {
+    "Pos": 114,
+    "Name": "Benin",
+    "Value": 438
+  },
+  {
+    "Pos": 115,
+    "Name": "Kosovo",
+    "Value": 430
+  },
+  {
+    "Pos": 116,
+    "Name": "Liberia",
+    "Value": 429
+  },
+  {
+    "Pos": 117,
+    "Name": "Lebanon",
+    "Value": 401
+  },
+  {
+    "Pos": 118,
+    "Name": "Albania",
+    "Value": 339
+  },
+  {
+    "Pos": 119,
+    "Name": "Guatemala",
+    "Value": 332
+  },
+  {
+    "Pos": 120,
+    "Name": "Eritrea",
+    "Value": 306
+  },
+  {
+    "Pos": 121,
+    "Name": "Swaziland",
+    "Value": 301
+  },
+  {
+    "Pos": 122,
+    "Name": "El Salvador",
+    "Value": 283
+  },
+  {
+    "Pos": 123,
+    "Name": "Costa Rica",
+    "Value": 278
+  },
+  {
+    "Pos": 124,
+    "Name": "Luxembourg",
+    "Value": 275
+  },
+  {
+    "Pos": 125,
+    "Name": "Montenegro",
+    "Value": 250
+  },
+  {
+    "Pos": 126,
+    "Name": "South Sudan",
+    "Value": 248
+  },
+  {
+    "Pos": 127,
+    "Name": "Dominican Republic",
+    "Value": 142
+  },
+  {
+    "Pos": 128,
+    "Name": "Djibouti",
+    "Value": 100
+  },
+  {
+    "Pos": 129,
+    "Name": "Panama",
+    "Value": 76
+  },
+  {
+    "Pos": 130,
+    "Name": "Isle of Man",
+    "Value": 63
+  },
+  {
+    "Pos": 131,
+    "Name": "Nepal",
+    "Value": 59
+  },
+  {
+    "Pos": 132,
+    "Name": "Saint Kitts and Nevis",
+    "Value": 50
+  },
+  {
+    "Pos": 133,
+    "Name": "Honduras",
+    "Value": 44
+  },
+  {
+    "Pos": 134,
+    "Name": "Paraguay",
+    "Value": 36
+  },
+  {
+    "Pos": 135,
+    "Name": "Christmas Island",
+    "Value": 18
+  },
+  {
+    "Pos": 136,
+    "Name": "Liechtenstein",
+    "Value": 9
+  }
+]

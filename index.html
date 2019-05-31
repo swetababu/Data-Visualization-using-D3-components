@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pie Chart</title>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"  type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/style.css">
+    
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+     svg
+        {
+            max-width: 1000px;
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>
+                <a class="navbar-brand" href="#myPage">WORLD TRANSPORTATION</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="index.html">PIE CHART</a></li>
+                    <li><a href="bargraph.html">BAR GRAPH</a></li>
+                    <li><a href="worldmap.html">WORLD MAP</a></li>
+                    <li><a href="forcedirectedlayout.html">FORCEDIRECTED LAYOUT</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="jumbotron text-center">
+        <h1>PIE CHART</h1> 
+        <p>Different means of transportation of 4 different countries</p> 
+    </div>
+    
+    <div class="container-fluid text-center">
+        <div class="row">
+            <div class="col-md-12">
+                <form style="border: 2px solid #000; padding: 10px;" class="bg-grey">
+                        <label style="margin-right: 15px; font-size: 14pt;"><input type="radio" name="dataset" value="airports" checked> Airports</label>
+                        <label style="margin-right: 15px; font-size: 14pt;"><input type="radio" name="dataset" value="railways"> Railways</label>
+                        <label style="margin-right: 15px; font-size: 14pt;"><input type="radio" name="dataset" value="roadways"> Roadways</label>
+                        <label style="margin-right: 15px; font-size: 14pt;"><input type="radio" name="dataset" value="waterways"> Waterways</label>
+                </form>
+                <h1>Countries</h1>
+                <br>
+                <h3>
+                    <span style="padding: 20px; background-color: #D2B4DE; margin-right: 15px; height: 10px; width: 10px;"></span>
+                    Mexico 
+                    
+                    <span style="padding: 20px; background-color: #52BE80; margin-right: 15px; height: 10px; width: 10px;"></span>
+                    Canada 
+                    
+                    <span style="padding: 20px; background-color: #EC7063; margin-right: 15px; height: 10px; width: 10px;"></span>
+                    Russia 
+                    
+                    <span style="padding: 20px; background-color: #A9DFBF; margin-right: 15px; height: 10px; width: 10px;"></span>
+                    Argentina
+                </h3>
+                
+                <section class="col-md-12"></section>
+            </div>
+        </div>
+    </div>
+    
+    <script src="//d3js.org/d3.v3.min.js"></script>
+    
+    <script>
+        
+        function responsivefy(svg) {
+            var container = d3.select(svg.node().parentNode),
+                width = parseInt(svg.style("width")),
+                height = parseInt(svg.style("height")),
+                aspect = width / height;
+
+            svg.attr("viewBox", "0 0 " + width + " " + height)
+                .attr("perserveAspectRatio", "xMinYMid")
+                .call(resize);
+            
+            d3.select(window).on("resize." + container.attr("id"), resize);
+
+            function resize() {
+                var targetWidth = parseInt(container.style("width"));
+                svg.attr("width", targetWidth);
+                svg.attr("height", Math.round(targetWidth / aspect));
+            }
+        }
+
+        var width = 960,
+            height = 500,
+            radius = Math.min(width, height) / 2;
+
+        var color = d3.scale.ordinal()
+          .range(["#D2B4DE", "#52BE80", "#EC7063", "#A9DFBF"]);
+
+        var pie = d3.layout.pie()
+            .value(function(d) { return d.airports; })
+            .sort(null);
+
+        var arc = d3.svg.arc()
+            .innerRadius(radius - 100)
+            .outerRadius(radius - 20);
+
+        var svg = d3.select("section").append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .call(responsivefy)
+          .append("g")
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+        d3.csv("piechart.csv", type, function(error, data) {
+          if (error) throw error;
+
+          var path = svg.datum(data).selectAll("path")
+              .data(pie)
+            .enter().append("path")
+              .attr("fill", function(d, i) { return color(i); })
+              .attr("d", arc)
+              .each(function(d) { this._current = d; }); // store the initial angles
+
+          d3.selectAll("input")
+              .on("change", change);
+
+          var timeout = setTimeout(function() {
+            d3.select("input[value=\"airports\"]").property("checked", true).each(change);
+          }, 2000);
+
+          function change() 
+            {
+                var value = this.value;
+                clearTimeout(timeout);
+                pie.value(function(d) { return d[value]; }); // change the value function
+                path = path.data(pie); // compute the new angles
+                path.transition().duration(750).attrTween("d", arcTween); // redraw the arcs
+            }
+        });
+
+        function type(d) 
+        {
+              d.airports = +d.airports;
+              d.railways = +d.railways;
+              d.roadways = +d.roadways;
+              d.waterways = +d.waterways;
+              return d;
+        }
+
+        function arcTween(a) 
+        {
+              var i = d3.interpolate(this._current, a);
+              this._current = i(0);
+              return function(t) {
+                return arc(i(t));
+              };
+        }
+
+    </script>
+    
+   
+    
+    <footer class="container-fluid text-center bg-grey">
+        <p>Sweta Gupta (8151397) - D3 Final Project</p>
+    </footer>
+    
+</body>
+</html>

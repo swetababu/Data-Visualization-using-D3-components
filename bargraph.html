@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bar Graph</title>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"  type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/style.css">
+    
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <style>
+        
+        
+    .bar{
+        fill: steelblue;
+      }
+
+      .bar:hover{
+        fill: brown;
+      }
+
+        .axis {
+          font: 10px sans-serif;
+        }
+
+        .axis path,
+        .axis line {
+          fill: none;
+          stroke: #000;
+          shape-rendering: crispEdges;
+        }
+         svg
+        {
+            max-width: 1000px;
+        }
+
+
+        
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>
+                <a class="navbar-brand" href="#myPage">WORLD TRANSPORTATION</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="index.html">PIE CHART</a></li>
+                    <li class="active"><a href="bargraph.html">BAR GRAPH</a></li>
+                    <li><a href="worldmap.html">WORLD MAP</a></li>
+                    <li><a href="forcedirectedlayout.html">FORCEDIRECTED LAYOUT</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="jumbotron text-center">
+        <h1>BAR GRAPH</h1> 
+        <p>Top 10 countires with maximum number of airports</p> 
+    </div>
+    
+    <div class="container-fluid text-center">
+        <section>
+            <div id="drop" align=center></div>
+        </section>
+    </div>
+    
+    <script src="//d3js.org/d3.v3.min.js"></script>
+    
+    <script>
+        function responsivefy(svg) {
+            var container = d3.select(svg.node().parentNode),
+                width = parseInt(svg.style("width")),
+                height = parseInt(svg.style("height")),
+                aspect = width / height;
+
+            svg.attr("viewBox", "0 0 " + width + " " + height)
+                .attr("perserveAspectRatio", "xMinYMid")
+                .call(resize);
+            
+            d3.select(window).on("resize." + container.attr("id"), resize);
+
+            function resize() {
+                var targetWidth = parseInt(container.style("width"));
+                svg.attr("width", targetWidth);
+                svg.attr("height", Math.round(targetWidth / aspect));
+            }
+        }
+        
+        var margin = {top: 20, right: 180, bottom: 20, left: 180},
+            width = 960 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom;
+
+        var svg = d3.select("section").append("svg")
+            .attr("width", 960)
+            .attr("height", 500)
+            .call(responsivefy)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+            ;
+
+        d3.csv("bargraph.csv", function(error, data){
+            
+        // Get every column value
+        var elements = Object.keys(data[0])
+            .filter(function(d){
+                return ((d != "State"));
+            });
+        var selection = elements[0];
+
+        var y = d3.scale.linear()
+                .domain([0, d3.max(data, function(d){
+                    return +d[selection];
+                })])
+                .range([height, 0]);
+
+        var x = d3.scale.ordinal()
+                .domain(data.map(function(d){ return d.State;}))
+                .rangeBands([0, width]);
+
+
+        var xAxis = d3.svg.axis()
+            .scale(x)
+            .orient("bottom");
+
+        var yAxis = d3.svg.axis()
+            .scale(y)
+            .orient("left");
+
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis)
+            .selectAll("text")
+            .style("font-size", "8px")
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", "-.55em")
+            .attr("transform", "rotate(-90)" );
+
+
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis);
+
+        svg.selectAll("rectangle")
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("class","rectangle")
+            .style("fill", "#AF7AC5")
+            .style("stroke", "white")
+            .attr("width", width/data.length)
+            .attr("height", function(d){
+                return height - y(+d[selection]);
+            })
+            .attr("x", function(d, i){
+                return (width / data.length) * i ;
+            })
+            .attr("y", function(d){
+                return y(+d[selection]);
+            })
+            .append("title")
+            .text(function(d){
+                return d.State + " : " + d[selection];
+            });
+
+        var selector = d3.select("#drop")
+            .append("select")
+            .attr("id","dropdown")
+            .on("change", function(d){
+                selection = document.getElementById("dropdown");
+
+                y.domain([0, d3.max(data, function(d){
+                    return +d[selection.value];})]);
+
+                yAxis.scale(y);
+
+                d3.selectAll(".rectangle")
+                    .transition()
+                    .attr("height", function(d){
+                        return height - y(+d[selection.value]);
+                    })
+                    .attr("x", function(d, i){
+                        return (width / data.length) * i ;
+                    })
+                    .attr("y", function(d){
+                        return y(+d[selection.value]);
+                    })
+                    .ease("linear")
+                    .select("title")
+                    .text(function(d){
+                        return d.State + " : " + d[selection.value];
+                    });
+
+                d3.selectAll("g.y.axis")
+                    .transition()
+                    .call(yAxis);
+
+             });
+
+        selector.selectAll("option")
+          .data(elements)
+          .enter().append("option")
+          .attr("value", function(d){
+            return d;
+          })
+          .text(function(d){
+            return d;
+          })
+
+
+    });
+
+    </script>
+
+    <footer class="container-fluid text-center bg-grey">
+        <p>Sweta Gupta (8151397) - D3 Final Project</p>
+    </footer>
+    
+</body>
+</html>

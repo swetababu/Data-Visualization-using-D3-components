@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>World Map</title>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"  type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/style.css">
+    
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        path.countries{
+            stroke-width: 1;
+            stroke: #75739F;
+            fill: #ABEBC6;
+        }
+        circle.cities{
+            stroke-width: 1;
+            stroke: #4F442B;
+            fill: #FCBC34;
+        }
+        button{
+            background-color: #E74C3C; /* Blue */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            margin: 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+       
+     #left {
+      width: 900px;
+      float: left;
+    }
+    #right {
+      margin-left: 200px;
+    }
+         svg
+        {
+            max-width: 1000px;
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>
+                <a class="navbar-brand" href="#myPage">WORLD TRANSPORTATION</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="index.html">PIE CHART</a></li>
+                    <li><a href="bargraph.html">BAR GRAPH</a></li>
+                    <li class="active"><a href="worldmap.html">WORLD MAP</a></li>
+                    <li><a href="forcedirectedlayout.html">FORCEDIRECTED LAYOUT</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="jumbotron text-center">
+        <h1>WORLD MAP</h1> 
+        <p>Top 20 countries for each way of transportation</p> 
+    </div>
+    
+    <div class="container-fluid text-center">
+        <div class="col-md-4">
+                  
+                    <button id="airportsButton" onclick="airports()"> Airports</button><br>
+                    <button id="railwaysButton" onclick="railways()"> Railways</button><br>
+                    <button id="roadwaysButton" onclick="roadways()"> Roadways</button><br>
+                    <button id="waterwaysButton" onclick="waterways()"> Waterways</button>
+                    <br><br>
+                 </div>
+        
+        <div id="viz">
+                <div class="col-md-8">
+                   <section>
+             
+        </section>
+                    
+                </div>
+                 
+                 
+
+                
+            </div>
+        
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.8/d3.min.js"></script>
+    
+    <script>
+        
+        function responsivefy(svg) {
+            var container = d3.select(svg.node().parentNode),
+                width = parseInt(svg.style("width")),
+                height = parseInt(svg.style("height")),
+                aspect = width / height;
+
+            svg.attr("viewBox", "0 0 " + width + " " + height)
+                .attr("perserveAspectRatio", "xMinYMid")
+                .call(resize);
+            
+            d3.select(window).on("resize." + container.attr("id"), resize);
+
+            function resize() {
+                var targetWidth = parseInt(container.style("width"));
+                svg.attr("width", targetWidth);
+                svg.attr("height", Math.round(targetWidth / aspect));
+            }
+        }
+
+        
+                var worldairports = [];
+                var worldrailways = [];
+                var worldroadways = [];
+                var worldwaterways = [];
+        
+                
+                var PromiseWrapper = (xhr, d) => 
+                    new Promise(resolve => xhr(d, (p) => resolve(p)))
+                Promise
+                    .all([
+                    PromiseWrapper(d3.json, "world.geojson"),
+                    PromiseWrapper(d3.csv, "worldmap.csv")
+                ])
+                    .then(resolve => {
+                    createMap(resolve[0], resolve[1])
+                });
+                               
+                  
+                function createMap(countries, worldtransportation)
+                {
+                     worldtransportation.forEach(function(d){
+                        worldairports.push(d.airports);
+                        worldrailways.push(d.railways);
+                        worldroadways.push(d.roadways);
+                        worldwaterways.push(d.waterways);
+                         
+                       })
+                    //choose a projection
+                    var aProjection = d3.geoMercator()
+                                        .scale(150)
+                                        .translate([250,250]);
+                    var geoPath = d3.geoPath().projection(aProjection);
+                    d3.select("section")
+                        .append("svg")
+                        .attr("width", 1000)
+                        .attr("height", 1000)
+                        .call(responsivefy)
+                        .selectAll("path")
+                        .data(countries.features)
+                        .enter()
+                        .append("path")
+                        .attr("d",geoPath)
+                        .attr("class","countries");
+                
+                    d3.select("svg")
+                    .selectAll("circle")
+                    .data(worldtransportation)
+                    .enter()
+                    .append("circle")
+                    .attr("class","worldtransportation")
+                    .attr("r",5)
+                    .attr("cx", d=>aProjection([d.x, d.y][0]))
+                    .attr("cy", d=>aProjection([d.x, d.y][1]))
+                    .style("fill", "#82E0AA");
+                }
+                    function airports()
+                    {
+                        d3.select("svg")
+                            .selectAll("path.countries")
+                            .style("fill", "#82E0AA");
+                        
+                        d3.select("svg")
+                            .selectAll("path.countries")
+                            .filter(function(d)
+                                   {
+                                        if(worldairports.indexOf(d.properties.name) > -1)
+                                            {
+                                                return d;
+                                            }
+                                })
+                            .style("fill", "#1D8348");
+                    }
+                    
+                    function railways()
+                    {
+                        d3.select("svg")
+                            .selectAll("path.countries")
+                            .style("fill", "#82E0AA");
+                        
+                        d3.select("svg")
+                            .selectAll("path.countries")
+                            .filter(function(d)
+                                   {
+                                        if(worldrailways.indexOf(d.properties.name) > -1)
+                                            {
+                                                return d;
+                                            }
+                                })
+                            .style("fill", "#1D8348");
+                    }
+                    
+                    function roadways()
+                    {
+                        d3.select("svg")
+                            .selectAll("path.countries")
+                            .style("fill", "#82E0AA");
+                        
+                        d3.select("svg")
+                            .selectAll("path.countries")
+                            .filter(function(d)
+                                   {
+                                        if(worldroadways.indexOf(d.properties.name) > -1)
+                                            {
+                                                return d;
+                                            }
+                                })
+                            .style("fill", "#1D8348");
+                    }
+        
+                    function waterways()
+                    {
+                        d3.select("svg")
+                            .selectAll("path.countries")
+                            .style("fill", "#82E0AA");
+                        
+                        d3.select("svg")
+                            .selectAll("path.countries")
+                            .filter(function(d)
+                                   {
+                                        if(worldwaterways.indexOf(d.properties.name) > -1)
+                                            {
+                                                return d;
+                                            }
+                                })
+                            .style("fill", "#1D8348");
+                    }
+                
+        
+    </script>
+    
+   
+    
+    <footer class="container-fluid text-center bg-grey">
+        <p>Sweta Gupta (8151397) - D3 Final Project</p>
+    </footer>
+    
+</body>
+</html>
